@@ -6,7 +6,7 @@ import requests
 
 
 # input csv file name
-FILE_NAME = "word_list.csv"
+FILE_NAME = "words.csv - set.csv"
 
 BASE_URL = 'https://www.bing.com/translator/api/language/Speak'
 GET_PARAMS = '?locale={locale}&gender={gender}&media=audio/mp3&text={text}'
@@ -18,8 +18,8 @@ BING_COOKIES = requests.get('https://www.bing.com/translator').cookies
 LOCALE = namedtuple('LOCALE', 'country locale_code gender')
 
 # locales and preset genders
-usa = LOCALE('USA', 'en-US', 'male')
-great_britain = LOCALE('Great Britain', 'en-GB', 'female')
+usa = LOCALE('USA', 'en-US', 'female')
+great_britain = LOCALE('Great Britain', 'en-GB', 'male')
 india = LOCALE('India', 'en-IN', 'male')
 australia = LOCALE('Australia', 'en-AU', 'female')
 
@@ -57,8 +57,11 @@ if __name__ == '__main__':
                 response_mp3_usa = make_request_for_mp3(country=usa, txt=text)
                 save_mp3(row, response_mp3_usa, country=usa)
 
-                response_mp3_australia = make_request_for_mp3(country=australia, txt=text)
-                save_mp3(row, response_mp3_australia, country=australia)
+                # response_mp3_australia = make_request_for_mp3(country=australia, txt=text)
+                # save_mp3(row, response_mp3_australia, country=australia)
+
+                response_mp3_uk = make_request_for_mp3(country=great_britain, txt=text)
+                save_mp3(row, response_mp3_uk, country=great_britain)
 
     except Exception as error:
         print("OOPS! NO FILE NAMED {}".format(FILE_NAME))
