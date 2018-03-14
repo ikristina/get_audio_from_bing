@@ -6,10 +6,10 @@ import requests
 
 
 # input csv file name
-FILE_NAME = "words.csv - set.csv"
+FILE_NAME = "words.csv"
 
-BASE_URL = 'https://www.bing.com/translator/api/language/Speak'
-GET_PARAMS = '?locale={locale}&gender={gender}&media=audio/mp3&text={text}'
+BASE_URL = 'https://www.bing.com/tspeak'
+GET_PARAMS = '?format=audio%2Fmp3&language={locale}&options={gender}&text={text}'
 
 # bing translator cookies for mp3 requests
 BING_COOKIES = requests.get('https://www.bing.com/translator').cookies
@@ -22,6 +22,7 @@ usa = LOCALE('USA', 'en-US', 'female')
 great_britain = LOCALE('Great Britain', 'en-GB', 'male')
 india = LOCALE('India', 'en-IN', 'male')
 australia = LOCALE('Australia', 'en-AU', 'female')
+canada = LOCALE('CANADA', 'en-CA', 'male')
 
 
 def make_mp3_file_name(name, sex, country_name):
@@ -54,8 +55,11 @@ if __name__ == '__main__':
                 # spaces in text have to be substituted for + (pluses)
                 text = row[0].strip().replace(" ", "+")
 
-                response_mp3_usa = make_request_for_mp3(country=usa, txt=text)
-                save_mp3(row, response_mp3_usa, country=usa)
+                response_mp3_canada = make_request_for_mp3(country=canada, txt=text)
+                save_mp3(row, response_mp3_canada, country=canada)
+
+                # response_mp3_usa = make_request_for_mp3(country=usa, txt=text)
+                # save_mp3(row, response_mp3_usa, country=usa)
 
                 # response_mp3_australia = make_request_for_mp3(country=australia, txt=text)
                 # save_mp3(row, response_mp3_australia, country=australia)
