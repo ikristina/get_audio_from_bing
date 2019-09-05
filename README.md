@@ -1,4 +1,6 @@
-# get_audio_from_bing
+# Currently doesn't work since bing translator changed its API again.
+
+## get_audio_from_bing
 Downloads mp3 sounds from the [Bing Translator](https://www.bing.com/translator) for english words and expressions in csv file.
 
 ### How to use
